@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import { client } from "../hooks/prismic";
+import { NextPage } from "next";
+
 import * as prismic from "@prismicio/client";
-import Header from "../components/Header";
+import { client } from "../../hooks/prismic";
 interface IProduto {
   id: string;
   slug: string;
@@ -14,18 +14,16 @@ interface IProduto {
 interface IHomeprops {
   produtos: IProduto[];
 }
-const Home: NextPage<IHomeprops> = ({ produtos }) => {
+const Header: NextPage = ({ produtos }: IHomeprops) => {
   console.log(produtos);
   return (
     <>
-      <Header />
-      <h2>Ola mundo</h2>
+      <h1>Ola</h1>
     </>
   );
 };
 
-export default Home;
-
+export default Header;
 export const getStaticProps = async () => {
   const response = await client.get({
     predicates: prismic.predicate.at("document.type", "produtos"),
